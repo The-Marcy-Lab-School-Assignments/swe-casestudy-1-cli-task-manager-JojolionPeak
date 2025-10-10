@@ -32,6 +32,7 @@ The user interface is how humans interact with our programs. Even in a simple co
 2. In the `viewTasks()` function, tasks are displayed with checkboxes: `[x]` for completed tasks and `[ ]` for incomplete tasks. Do you think this visual representation is easy to understand? What alternative ways of displaying this information can you think of?
 3. Look at the `console.clear()` call at the end of the `while` loop in `showMenu()`. It occurs after a final `prompt()` for the user to press Enter. How would the user experience change if we didn't clear the console? How would it change if we removed the `prompt()` that comes right before it?
 4. When a user completes a task, the program shows a message like `Task "walk the dog" marked as completed!`. Why is it important that the user sees these messages? How would the user experience change without these messages?
+5. How would you change or improve this application?
 
 **My Notes:**
 
@@ -43,11 +44,17 @@ The user interface is how humans interact with our programs. Even in a simple co
 
 Whether you are designing a new application or learning about an existing one, we always start by asking: _how is the data represented_? Once we know how to represent the data, we are better able to design how the application uses and manipulates it.
 
-**Investigation Questions:** 
+**Investigation Questions:**
 
 
 1. Go to the `tasks.js` file and look at the `tasks` variable. It is an array of objects. Each object represents a task in the list. Each task has a `description` string and an `isComplete` boolean. For the `isComplete` value, We could also have represented it with the numbers: `isComplete: 0` (incomplete) and `isComplete: 1` (complete); or as strings `isComplete: "complete"` and `isComplete: "incomplete"`. If it were up to you, which would you choose to represent `isComplete` and why?
 2. In `tasks.js` in the `addTask` function, there is this conditional statement: `if (!description)`. What data type does the expression `!description` evaluate to? and what is the purpose of this conditional statement?
+
+- the expression evaluates to falsy boolean because the if statement is checking to see if there is no value given to the description string
+
+- This is to check if a descriptive string was inputted to the task (name) and if not, the task wouldn't get created and would return a message on why
+
+
 3. In `menu.js`, the user's chosen task number `taskChoice` is converted to a number using the `Number` casting function. Why is this code necessary? What happens if this type conversion is removed?
 
 **My Notes:**
@@ -68,8 +75,16 @@ Understanding where variables are declared (their **scope**) and therefore where
     ```js
     completeTask(Number(prompt('Enter task number to complete: ')) - 1);
     ```
-  
+
     What are the tradeoffs of these approaches?
+
+    - Using a variable allows us to reuse that code over and over again without having to retype the whole thing.
+
+    - Writing it out gives us more control over the output of the code.
+
+
+
+
 3. Look at the `tasks` array in `tasks.js`. What is the scope of the `tasks` variable? What would happen if we moved the `tasks` array declaration inside one of the functions? Why would this break the application?
 
 **My Notes:**
@@ -85,8 +100,8 @@ Functions are the building blocks of reusable code. They allow us to break down 
 **Investigation Questions:**
 
 1. In `menu.js`, take a look at how the `prompt()` function is being invoked. Based on what you're seeing, how many parameters does the function seem to have? If you were the designer of that function what name would you give to its parameters?
-2. What if the programmer had written all the task logic directly in `menu.js` instead of creating separate functions? For example, look at the code inside `clearTasks()` — imagine copying all of that code and pasting it directly where `clearTasks()` is called. 
-    
+2. What if the programmer had written all the task logic directly in `menu.js` instead of creating separate functions? For example, look at the code inside `clearTasks()` — imagine copying all of that code and pasting it directly where `clearTasks()` is called.
+
     ```js
     else if (menuChoice === '3') {
       tasks.length = 0;
@@ -156,9 +171,9 @@ Loops take repetitive tasks and boil them down to a process that can be repeated
 Arrays and objects are the two most common options we have for creating collections of data. Arrays are a great choice for grouping together lists of similar values while objects are a great way to represent a single thing that has many data points related to it.
 
 **Investigation Questions**
-The entire collection of `tasks` is represented as an Array of task objects. Each task object is represented with properties `.description` and `.isComplete`. Suppose we instead represented the tasks as an array of strings, such as `['walk the dog', 'take out the trash']`. 
+The entire collection of `tasks` is represented as an Array of task objects. Each task object is represented with properties `.description` and `.isComplete`. Suppose we instead represented the tasks as an array of strings, such as `['walk the dog', 'take out the trash']`.
 
-1. What are the tradeoffs between an array of objects and an array of strings? 
+1. What are the tradeoffs between an array of objects and an array of strings?
 2. What ideas do you have for differentiating incomplete tasks and complete tasks?
 
 **My Notes:**
@@ -224,7 +239,7 @@ Now that the core Task Manager app is complete, it’s time to add new features!
 * **Mark All as Completed**: Add a menu option that marks every task as completed.
 
 * **Show Task Stats**: Add a message to the the `viewTasks` function that shows the user how many tasks are complete vs. incomplete.
-  
+
 * **Data Persistence**: Look into the `JSON.stringify` and `JSON.parse()` functions as well as the `fs.writeFileSync()` function to figure out how to store the tasks in a `.json` file whenever the user exits and then retrieve those tasks when they start up again.
 
 ### Tips
