@@ -141,8 +141,33 @@ A module is a file containing code, which can then be imported and utilized in o
 **Investigation Questions:**
 
 1. Look at the top of `menu.js`. You'll see `addTask` is imported. What would happen if we tried to call `addTask()` in `menu.js` without this import statement? Why do we need to explicitly import these functions?
+
+  ## Question 1
+
+If we tried to call addTask() without first importing it, we would get back that addTask wasn't defined or created on this file.
+
+
+We need to import these functions because we use these functions in the code on this file
+
 2. In `tasks.js`, look at the bottom of the file: `module.exports = { addTask, viewTasks, completeTask, clearTasks };`. This exports the functions so they can be used in other files. Notice that the `tasks` array itself isn't exported which means that the `menu.js` file can't access it directly. Why do you think the programmer chose to leave out `tasks` from the export list?
+
+## Question 2
+
+
+The programmer didn't include the `tasks` array because it's just a description on whether or not the project is complete and whether the questions were fully answered.
+
+The contents of the `tasks` array was not beneficial to any of the other files in this project so they didn't need to export the data.
+
+
+ Wasn't directly used in the menu.js file, only referenced through the tasks.js file (Don't have to access)
+
 3. If we wanted to add a new feature to the application, giving the user the option to mark all items as complete, how would you split up the code amongst the modules to implement this feature?
+
+  ## Question 3
+
+I would add the markAll() function into the tasks.js file and export it to the menu.js file.
+
+   I would do this because all the functions that have to do with making and chnaging tasks are in the tasks.js. Grouping code that has similar function is best practice.
 
 **My Notes:**
 
@@ -158,6 +183,16 @@ Loops take repetitive tasks and boil them down to a process that can be repeated
 
 1. Look at the `showMenu()` function in `menu.js`. There's a `while (isRunning)` loop that keeps the menu running until the user chooses to exit. What would happen if we forgot to set `isRunning = false` when the user chooses option 4 (Exit)? What would happen if we forgot to include that line of code?
 2. Why is a `while` loop the appropriate type of loop to use to display the menu as opposed to a `for` loop?
+
+  ## Question 2
+
+We use for () loops when we know how many times we wan the loop to run
+
+We use a while loop when we don't have a clear amount of times to loop, only a condition that'll evaluate to true or false.
+
+Want to make the isRunning variable to false when we want the loop to quit.
+
+
 3. The `while` loop in `showMenu()` has a condition `while (isRunning)`. This means the loop will continue as long as `isRunning` is `true`. What would happen if we changed the condition to `while (true)` and removed the `isRunning` variable entirely? How else could we break out of the loop?
 
 **My Notes:**
@@ -175,6 +210,10 @@ The entire collection of `tasks` is represented as an Array of task objects. Eac
 
 1. What are the tradeoffs between an array of objects and an array of strings?
 2. What ideas do you have for differentiating incomplete tasks and complete tasks?
+
+## Question 2
+
+For complete tasks the string item would have to be popped or shifted. For incomplete tasks, they would remain on the to do list. This would still unnable the user to see previously completed tasks as they would be removed from the taskbar.
 
 **My Notes:**
 
